@@ -14,10 +14,16 @@ vi  /opt/sonar-scanner/conf/sonar-scanner.properties
 sonar.host.url=http://localhost:9000
 sonar.sourceEncoding=UTF-8
 
-echo "#!/bin/bash \
-export PATH="$PATH:/opt/sonar-scanner/bin" " /etc/profile.d/sonar-scanner.sh
+
+
+vi /etc/profile.d/sonar-scanner.sh
+
+#!/bin/bash 
+export PATH="$PATH:/opt/sonar-scanner/bin"  
 
 
 env | grep PATH
 
 sonar-scanner -v
+
+
