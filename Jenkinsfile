@@ -97,6 +97,13 @@ stages {
         }
 
         stage('Deploy Dev') {
+            
+            when {
+                    not { branch 'main' }
+                    not { branch 'master' }
+             }
+
+            
            
             steps{
     
