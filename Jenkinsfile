@@ -4,11 +4,19 @@ pipeline {
       nodejs "nodejs"
     }
    environment {
-        PROJECT_ID = 'qwiklabs-gcp-01-82bbc493ae94'
+        PROJECT_ID = 'qwiklabs-gcp-04-ecebad306a3c'
         CLUSTER_NAME = 'jenkins-cd'
         LOCATION = 'us-central1-a'
-        CREDENTIALS_ID = 'qwiklabs-gcp-01-82bbc493ae94'
+        CREDENTIALS_ID = 'qwiklabs-gcp-04-ecebad306a3c'
         dockerImage = "nodeapp"
+
+        // sonarscanner
+
+        PROJECTKEY= 'sample'
+        URL = 'http://34.134.17.81:9000'
+        LOGIN= 'sqp_012a82ccb48a91e5277a0d8e981195d9775b452a'
+
+
     } 
 stages {
         stage("Code Checkout from Github") {
@@ -23,18 +31,19 @@ stages {
             def scannerHome = tool 'sonarscanner';
                withSonarQubeEnv(credentialsId: 'sonarkey'){
                 sh "${tool("sonarscanner")}/bin/sonar-scanner \
-                -Dsonar.projectKey=sample \
+                -Dsonar.projectKey=${env.PROJECTKEY} \
                 -Dsonar.sources=. \
-                -Dsonar.host.url=https://9000-145248df-48c1-4f67-98cc-08303b019d3e.cs-asia-southeast1-ajrg.cloudshell.dev \
-                -Dsonar.login=sqp_7449d33aa41a36293820203cf902d34054cf6773"
+                -Dsonar.host.url=${env.URL} \
+                -Dsonar.login=${env.LOGIN}"
                     }
                 }
             }
         }
-        stage("Install Project Dependencies") {
+        stage("Install Project Dependencies & Test") {
           steps {
               nodejs(nodeJSInstallationName: 'nodejs'){
                   sh "npm install"
+                  //add test
                   }
               }
         }
