@@ -81,7 +81,7 @@ stages {
 
             steps{
     
-                sh "sed -i 's/mywebsite:latest/mywebsite:${env.BUILD_ID}/g' k8s/deployment.yaml"
+                sh "sed -i 's/nodeapp:latest/nodeapp:${env.BUILD_ID}/g' k8s/deployment.yaml"
 
                 step([$class: 'KubernetesEngineBuilder', namespace:'production', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'k8s/deployment.yaml', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
  
@@ -100,7 +100,7 @@ stages {
            
             steps{
     
-                sh "sed -i 's/mywebsite:latest/mywebsite:${env.BUILD_ID}/g' k8s/deployment.yaml"
+                sh "sed -i 's/nodeapp:latest/nodeapp:${env.BUILD_ID}/g' k8s/deployment.yaml"
 
                 step([$class: 'KubernetesEngineBuilder', namespace:'dev', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'k8s/deployment.yaml', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
  
