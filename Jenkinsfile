@@ -78,6 +78,7 @@ stages {
         stage('Deploy Production') {
 
             when { branch 'main' }
+
             steps{
     
                 sh "sed -i 's/mywebsite:latest/mywebsite:${env.BUILD_ID}/g' k8s/deployment.yaml"
@@ -97,8 +98,8 @@ stages {
 
         stage('Deploy Dev') {
              when {
-                    not { branch 'main' }
-                    not { branch 'master' }
+                    { branch 'main' }
+                    
              }
             steps{
     
