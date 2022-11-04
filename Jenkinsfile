@@ -13,7 +13,7 @@ pipeline {
         // sonarscanner
 
         PROJECTKEY= 'sample'
-        URL = 'http://34.134.17.81:9000'
+        SONARURL = 'http://34.134.17.81:9000'
         LOGIN= 'sqp_012a82ccb48a91e5277a0d8e981195d9775b452a'
 
 
@@ -33,7 +33,7 @@ stages {
                 sh "${tool("sonarscanner")}/bin/sonar-scanner \
                 -Dsonar.projectKey=${env.PROJECTKEY} \
                 -Dsonar.sources=. \
-                -Dsonar.host.url=${env.URL} \
+                -Dsonar.host.url=${env.SONARURL} \
                 -Dsonar.login=${env.LOGIN}"
                     }
                 }
