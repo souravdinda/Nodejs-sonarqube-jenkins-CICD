@@ -25,6 +25,7 @@ stages {
             //     -Dsonar.login=${env.LOGIN}"
             //         }
             //     }
+            sh "npm install -g sonarqube-scanner"
             sh """sonar-scanner -D"sonar.projectKey=sample"  \
                  -D"sonar.host.url=http://13.235.103.54:9000/" \
                  -D"sonar.login=cfda070e8374bab165a024e3f8f2f912a6364f36" \
