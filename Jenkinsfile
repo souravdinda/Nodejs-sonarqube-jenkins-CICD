@@ -1,8 +1,6 @@
 pipeline {
   agent any
-  tools {
-      nodejs "nodejs"
-    }
+
    environment {
 
 
@@ -13,11 +11,7 @@ pipeline {
 
     } 
 stages {
-        stage("Code Checkout from Github") {
-          steps {
-            git branch: 'main', url: 'https://github.com/shivam779823/Nodejs-sonarqube-jenkins-CICD.git'
-          }
-      }
+       
 
         stage('Code Quality Check via SonarQube') {
         steps {
