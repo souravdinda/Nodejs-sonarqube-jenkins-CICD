@@ -25,6 +25,9 @@ stages {
             //     -Dsonar.login=${env.LOGIN}"
             //         }
             //     }
+            
+            sh "sudo yum install nodejs npm --enablerepo=epel"
+            sh "sudo yum install nodejs --enablerepo=epel-testing"
             sh "npm install -g sonarqube-scanner"
             sh """sonar-scanner -D"sonar.projectKey=sample"  \
                  -D"sonar.host.url=http://13.235.103.54:9000/" \
