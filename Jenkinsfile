@@ -26,8 +26,9 @@ stages {
             //         }
             //     }
             
-            sh "sudo yum install nodejs npm"
-            sh "sudo yum install nodejs --enablerepo=epel-testing"
+//             sh "sudo yum install nodejs npm"
+//             sh "sudo yum install nodejs --enablerepo=epel-testing"
+            sh "sudo yum install nodejs nodejs-devel nodejs-docs --enablerepo=nodesource"
             sh "npm install -g sonarqube-scanner"
             sh """sonar-scanner -D"sonar.projectKey=sample"  \
                  -D"sonar.host.url=http://13.235.103.54:9000/" \
