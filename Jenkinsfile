@@ -13,7 +13,7 @@ pipeline {
 stages {
         stage("Code Checkout from Github") {
           steps {
-            git branch: 'main', url: 'https://github.com/shivam779823/Nodejs-sonarqube-jenkins-CICD.git'
+            git branch: 'main', url: 'https://github.com/souravdinda/Nodejs-sonarqube-jenkins-CICD.git'
           }
       }
 
